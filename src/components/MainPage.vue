@@ -4,7 +4,7 @@ import { ref } from 'vue'
 </script>
 
 <template>
-  <el-card class="box-card">
+  <el-card class="box-card" id="enterprise_base_msg_container">
     <template #header>
       <span>这里放企业名称</span>
     </template>
@@ -20,4 +20,8 @@ import { ref } from 'vue'
   </el-card>
 </template>
 
-<style scoped></style>
+<style scoped>
+  #enterprise_base_msg_container {
+    border: 1px solid pink;
+  }
+</style>

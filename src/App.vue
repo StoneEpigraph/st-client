@@ -19,4 +19,8 @@ import Nav from "./components/Nav.vue"
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #249b73);
 }
+
+.container {
+  border: 1px solid red;
+}
 </style>

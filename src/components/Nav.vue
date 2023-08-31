@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 import { invoke } from "@tauri-apps/api/tauri";
-import MainPage from "./MainPage.vue";
 
 const greetMsg = ref("");
 const name = ref("");
@@ -18,27 +17,45 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   console.log(tab, event)
 }
 </script>
-
 <template>
-  <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-    <el-tab-pane label="首页" name="main">
-      <MainPage />
-    </el-tab-pane>
-    <el-tab-pane label="企业登记信息填报与核对" name="enterpriseVerify">企业登记信息填报与核对</el-tab-pane>
-    <el-tab-pane label="维修信息采集" name="repairRecord">维修信息采集</el-tab-pane>
-    <el-tab-pane label="人员管理" name="personManage">人员管理</el-tab-pane>
-    <el-tab-pane label="设备管理" name="deviceManage">设备管理</el-tab-pane>
-    <el-tab-pane label="维修价格备案" name="repairPriceManage">维修价格备案</el-tab-pane>
-    <el-tab-pane label="综合查询" name="comprehensiveQuery">综合查询</el-tab-pane>
-    <el-tab-pane label="系统维护" name="settings">系统维护</el-tab-pane>
-  </el-tabs>
+  <div id="nav_container">
+    <el-menu
+      :default-active="activeIndex"
+      class="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect"
+    >
+      <el-menu-item index="1">首页</el-menu-item>
+      <el-sub-menu index="2">
+        <template #title>Workspace</template>
+        <el-menu-item index="2-1">item one</el-menu-item>
+        <el-menu-item index="2-2">item two</el-menu-item>
+        <el-menu-item index="2-3">item three</el-menu-item>
+        <el-sub-menu index="2-4">
+          <template #title>item four</template>
+          <el-menu-item index="2-4-1">item one</el-menu-item>
+          <el-menu-item index="2-4-2">item two</el-menu-item>
+          <el-menu-item index="2-4-3">item three</el-menu-item>
+        </el-sub-menu>
+      </el-sub-menu>
+      <el-menu-item index="3" disabled>Info</el-menu-item>
+      <el-menu-item index="4">Orders</el-menu-item>
+    </el-menu>
+    <div class="h-6" />
+  </div>
 </template>
 
-<style scoped>
-.demo-tabs>.el-tabs__content {
-  padding: 32px;
-  color: #6b778c;
-  font-size: 32px;
-  font-weight: 600;
+<script lang="ts">
+import { ref } from 'vue'
+
+const activeIndex = ref('1')
+const activeIndex2 = ref('1')
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
 }
+</script>
+<style scoped>
+  #nav_container {
+    border: 3px solid green;
+  }
 </style>
